@@ -42,4 +42,12 @@ export class BasePage {
     async getAttribute(elementBy: By, attribute: string): Promise<string> {
         return (await this.getElement(elementBy)).getAttribute(attribute); 
     }; 
+    actionWiggle(actions: Actions, orgElement: WebElement, moveDuration: number = 100) : Actions {
+        return actions.move({origin: orgElement, duration: moveDuration})
+        .move({origin: orgElement, x:5, y:0, duration: moveDuration})
+        .move({origin: orgElement, x:0, y:5, duration: moveDuration})
+        .move({origin: orgElement, x:5, y:0, duration: moveDuration})
+        .move({origin: orgElement, x:0, y:5, duration: moveDuration})
+        .pause(moveDuration); 
+    }; 
 }
